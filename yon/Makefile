@@ -1,3 +1,6 @@
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
+
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
 OBJS =		main.o yon.o
@@ -10,10 +13,10 @@ $(TARGET):	$(OBJS)
 all: $(TARGET)
 
 install: $(TARGET)
-	install $(TARGET) /usr/local/bin
+	install $(TARGET) $(BINDIR)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
 
 uninstall:
-	unlink /usr/local/bin/$(TARGET)
+	unlink $(BINDIR)/$(TARGET)

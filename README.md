@@ -6,9 +6,13 @@ Baker is a humble command line tool for converting decimal or dozenal numbers in
 
 ### Building the project
 
-First, make sure you have support for c++11 installed. Then cd into the directory yon from the command line, and type "make" to build the sources.
+First, make sure you have support for c++11 installed. Baker can then be compiled and installed with:
 
-Soon there will be a makefile in the Baker directory that will allow you to build and install everything, including the currently non-existant zyon.
+make
+
+make install
+
+That's pretty much it, though you may need to be root if you are going to run make install. To uninstall Baker, cd into the main directory and then run "make uninstall".
 
 
 
@@ -19,14 +23,12 @@ Baker has two commands:
 - yon:    prompts for decimal numbers which are then converted to baker's dozenal;
 - zyon:   prompts for dozenal numbers to be converted to baker's dozenal (a.k.a. the holy base yon).
 
-At the moment, there is no zyon, and there is no install in the Makefile. But you can run yon by running "./yon" in the yon directory.
+If neither of them work, check that they were installed to a directory on your $PATH.
 
 
 
 ### To do list
 
-- Write zyon
-- Update Makefile
 - See if we can get better than yon-digit precision
 - Find a way around using computerease digits in dozenal and baker's dozenal?
 
