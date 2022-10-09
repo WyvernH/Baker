@@ -1,8 +1,8 @@
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
-OBJS =		main.o yon.o
+OBJS =		main.o zyon.o ../yon/yon.o
 
-TARGET =	yon
+TARGET =	zyon
 
 $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS)

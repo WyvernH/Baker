@@ -5,51 +5,52 @@
  *      Author: Matthew Hinton
  */
 
-#include "yon.h"
+#include "../yon/yon.h"
+#include "zyon.h"
 
 
 int main(void) {
 
 	long double dec{ };
-	int decPrecision{ };		// number of decimal places right of the radix point
+	int dozPrecision{ };		// number of decimal places right of the radix point
 	int yonPrecision{ };
-	std::string decimalCharacters{".0123456789"};
-	std::string yonnum{""}, decnum{""};
-	bool decimal;
+	std::string dozenalCharacters{".0123456789AaBbXxEe"};
+	std::string yonnum{""}, doznum{""};
+	bool dozenal;
 
 	std::cout << "\nType \"q\" to quit\n\n";
 
 	while (true) {
-		std::cout << "Decimal: ";
-		std::cin >> decnum;
+		std::cout << "Dozenal: ";
+		std::cin >> doznum;
 
-		if (decnum.find("q") != std::string::npos) {
+		if (doznum.find("q") != std::string::npos) {
 			return 0;
 		} else {
-			decimal = true;
-			for (unsigned int i{ }; i < decnum.size(); ++i) {
-				if (decimalCharacters.find(decnum.at(i)) == std::string::npos) {
-					decimal = false;
+			dozenal = true;
+			for (unsigned int i{ }; i < doznum.size(); ++i) {
+				if (dozenalCharacters.find(doznum.at(i)) == std::string::npos) {
+					dozenal = false;
 				}
 			}
-			if (decimal) {
-				decPrecision = 0;
-				if (decnum.find(".") != std::string::npos) {
-					decPrecision = decnum.size() - decnum.find(".");
+			if (dozenal) {
+				dozPrecision = 0;
+				if (doznum.find(".") != std::string::npos) {
+					dozPrecision = doznum.size() - doznum.find(".");
 				}
-				if (decnum.size() - decPrecision > MAX_PRECISION) {
+				if (doznum.size() - dozPrecision > MAX_PRECISION) {
 					yonnum = "E3";
 				} else {
-					--decPrecision;
-					dec = stold(decnum);
+					--dozPrecision;
+					dec = doztodec(doznum);
 
 					yonPrecision = 0;
 					if (EXTRA_PRECISION) {
-						if (decPrecision > 0) {
-							yonPrecision = decPrecision;
+						if (dozPrecision > 0) {
+							yonPrecision = dozPrecision;
 						}
 					} else {
-						yonPrecision = floor( log( pow(10, decPrecision) ) / log(13) );
+						yonPrecision = floor( log( pow(12, dozPrecision) ) / log(13) );
 					}
 					yonnum = yon(dec, yonPrecision);
 				}
@@ -73,4 +74,3 @@ int main(void) {
 
 	return 0;
 }
-
