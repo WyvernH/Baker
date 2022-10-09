@@ -1,5 +1,3 @@
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
-
 DIRS =		yon zyon
 
 all: $(DIRS)
