@@ -15,6 +15,7 @@
 #include <iostream>
 
 #define MAX_PRECISION 13
+#define TRUNC_PRECISION true	// Set to true to ignore any zeros beyond MAX_PRECISION in input after the radix point
 #define EXTRA_PRECISION true	// Setting this to "true" will use the same number of significant figures after the radix point in baker's dozenal.
 								// Setting this to "false" will convert sig figs from decimal into baker's dozenal.
 

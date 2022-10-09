@@ -13,10 +13,10 @@ $(TARGET):	$(OBJS)
 all: $(TARGET)
 
 install: $(TARGET)
-	install $(TARGET) $(PREFIX)
+	install $(TARGET) $(BINDIR)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
 
 uninstall:
-	unlink $(PREFIX)/$(TARGET)
+	unlink $(BINDIR)/$(TARGET)

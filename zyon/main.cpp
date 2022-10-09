@@ -12,8 +12,7 @@
 int main(void) {
 
 	long double dec{ };
-	int dozPrecision{ };		// number of decimal places right of the radix point
-	int yonPrecision{ };
+	int dozPrecision{ }, yonPrecision{ }, radixCount{ };
 	std::string dozenalCharacters{".0123456789AaBbXxEe"};
 	std::string yonnum{""}, doznum{""};
 	bool dozenal;
@@ -21,6 +20,8 @@ int main(void) {
 	std::cout << "\nType \"q\" to quit\n\n";
 
 	while (true) {
+		yonnum = "";
+
 		std::cout << "Dozenal: ";
 		std::cin >> doznum;
 
@@ -28,31 +29,63 @@ int main(void) {
 			return 0;
 		} else {
 			dozenal = true;
-			for (unsigned int i{ }; i < doznum.size(); ++i) {
+			radixCount = 0;
+			for (unsigned i{ }; i < doznum.size(); ++i) {
 				if (dozenalCharacters.find(doznum.at(i)) == std::string::npos) {
 					dozenal = false;
+				} else if (dozenalCharacters.find(doznum.at(i)) == 0) {
+					++radixCount;
 				}
+			}
+			if (radixCount > 1) {
+				dozenal = false;
 			}
 			if (dozenal) {
 				dozPrecision = 0;
-				if (doznum.find(".") != std::string::npos) {
-					dozPrecision = doznum.size() - doznum.find(".");
-				}
-				if (doznum.size() - dozPrecision > MAX_PRECISION) {
-					yonnum = "E3";
-				} else {
-					--dozPrecision;
-					dec = doztodec(doznum);
-
-					yonPrecision = 0;
-					if (EXTRA_PRECISION) {
-						if (dozPrecision > 0) {
-							yonPrecision = dozPrecision;
-						}
+				while (doznum.size() > 0) {
+					if (doznum.front() != dozenalCharacters.at(1)) {
+						break;
 					} else {
-						yonPrecision = floor( log( pow(12, dozPrecision) ) / log(13) );
+						doznum.erase(doznum.begin());
 					}
-					yonnum = yon(dec, yonPrecision);
+				}
+				while (doznum.size() > 0 && doznum.find(".") != 1) {
+					if (doznum.back() != dozenalCharacters.at(1)) {
+						break;
+					} else {
+						doznum.pop_back();
+						++dozPrecision;
+					}
+				}
+				if (doznum == "") {
+					yonnum = "0";
+				} else {
+					if (doznum.find(".") != std::string::npos) {
+						dozPrecision += doznum.size() - doznum.find(".");
+					}
+					if (doznum.find(".") != std::string::npos && doznum.find(".") > MAX_PRECISION) {
+						yonnum = "E3";
+					} else {
+						if (TRUNC_PRECISION == false && dozPrecision > MAX_PRECISION) {
+							yonnum = "E3";
+						} else {
+							if (dozPrecision > MAX_PRECISION) {
+								dozPrecision = MAX_PRECISION + 1;
+							}
+							--dozPrecision;
+							dec = doztodec(doznum);
+
+							yonPrecision = 0;
+							if (EXTRA_PRECISION) {
+								if (dozPrecision > 0) {
+									yonPrecision = dozPrecision;
+								}
+							} else {
+								yonPrecision = floor( log( pow(12, dozPrecision) ) / log(13) );
+							}
+							yonnum = yon(dec, yonPrecision);
+						}
+					}
 				}
 			} else {
 				yonnum = "E4";
@@ -67,6 +100,8 @@ int main(void) {
 			std::cout << "\nA number this long and complicated aught to be kept in the mind, lest we risk a dark forest strike from a malevolent civilization with sophon technology.\n\n\n";
 		} else if (yonnum == "E4") {
 			std::cout << "\nThis number doesn't obey all the known laws of mathematics. If you are reading this, it is most likely a message from our lord and saviour.\n\n\n";
+		} else if (yonnum == "") {
+			std::cout << "Baker's Dozenal: 0\n\n";
 		} else {
 			std::cout << "Baker's Dozenal: " + yonnum + "\n\n";
 		}

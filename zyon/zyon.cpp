@@ -20,7 +20,7 @@ long double doztodec(std::string doznum) {
 		exp = doznum.size() - 1;
 	}
 
-	int i{ };
+	long unsigned i{ };
 	while (exp >= 0) {
 		digit = 13;
 		i = 0;
@@ -29,10 +29,6 @@ long double doztodec(std::string doznum) {
 				digit = dozDigits[i].find(doznum.front());
 			}
 			++i;
-		}
-		if (digit > 12) {
-			printf("Error!!!"); // get rid of these lines later
-			return 0.0;
 		}
 
 		dec += digit * pow(12, exp);
@@ -50,10 +46,6 @@ long double doztodec(std::string doznum) {
 					digit = dozDigits[i].find(doznum.front());
 				}
 				++i;
-			}
-			if (digit > 12) {
-				printf("Error!!!"); // get rid of these lines later
-				return 0.0;
 			}
 
 			dec += digit * pow(12, exp);
