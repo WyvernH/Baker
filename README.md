@@ -8,7 +8,7 @@ Baker is a humble command line tool for converting decimal or dozenal numbers in
 
 First, make sure you have a suitable c++ compiler and support for c++11. Baker can then be compiled and installed by running "make" and "make install".
 
-That's pretty much it, though you may need to be root if you are going to run make install. To uninstall Baker, cd into the main directory and then run "make uninstall".
+That's pretty much it, though you may need to be root if you are going to run make install. To uninstall Baker, cd into the main directory and run "make uninstall".
 
 
 
