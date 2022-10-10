@@ -8,7 +8,7 @@
 #include "yon.h"
 
 
-std::string yon(long double dec, int yonPrecision) {
+std::string yon(long double dec, int yonPrecision, bool ignoreZeroFraction) {
 
 	long double idec{ }, fdec{ };
 	std::string yonnum{""};
@@ -40,7 +40,7 @@ std::string yon(long double dec, int yonPrecision) {
 		}
 	}
 
-	if (yonPrecision != 0) {
+	if (yonPrecision != 0 && ignoreZeroFraction == false) {
 		yonnum += ".";
 
 		int f{ };
