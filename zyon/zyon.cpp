@@ -12,7 +12,7 @@ long double doztodec(std::string doznum) {
 
 	long double dec{ };
 	int exp{ }, digit{ };
-	std::string dozDigits[] = {"0123456789ABC", "0123456879abc", "0123456789XEZ", "0123456789xez"};
+	std::string dozDigits[] = {"0123456789AB", "0123456879ab", "0123456789XE", "0123456789xe", "0123456789↊↋🜘"};
 
 	if (doznum.find(".") != std::string::npos) {
 		exp = doznum.find(".") - 1;

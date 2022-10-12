@@ -13,7 +13,7 @@ int main(void) {
 
 	long double dec{ };
 	int dozPrecision{ }, yonPrecision{ }, radixCount{ };
-	std::string dozenalCharacters{".0123456789AaBbXxEe"};
+	std::string dozenalCharacters{".0123456789AaBbXxEe↊↋🜘"};
 	std::string yonnum{""}, doznum{""};
 	bool dozenal, ignoreZeroFraction;
 
