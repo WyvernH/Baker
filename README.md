@@ -26,8 +26,7 @@ If neither of them work, check that they were installed to a directory on your $
 ### To do list
 
 - See if we can get better than yon-digit precision
-- Find a way around using computerease digits in dozenal and baker's dozenal?
-
+- Add a flag to automatically enable full precision in base yon output if desired
 
 
 ### Notes
